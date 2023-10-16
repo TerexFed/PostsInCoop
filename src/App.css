@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #b66c6c;
+}
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+}
+.AddPostButton{
+    margin-bottom: 40px;
+}
+.AddPostButton > button{
+    font-size: 25px;
+}
+.PostList{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+.PostItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+    width: 400px;
+    border: 2px solid rgb(255, 255, 255);
+    background-image: linear-gradient(to bottom,#e66465, #9198e5);
+}
