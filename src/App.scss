@@ -1,0 +1,101 @@
+// body{
+//     background-color: #b66c6c;
+// }
+// .App{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: 15px;
+// }
+// .AddPostButton{
+//     margin-bottom: 40px;
+// }
+// .AddPostButton > button{
+//     font-size: 25px;
+// }
+// .PostList{
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr;
+//     gap: 5px;
+// }
+// .PostItem{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-evenly;
+//     height: 200px;
+//     width: 400px;
+//     border: 2px solid rgb(255, 255, 255);
+//     background-image: linear-gradient(to bottom,#e66465, #9198e5);
+// }
+
+
+
+
+
+.AddPostButton {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        width: 250px;
+        height: 60px;
+        background-color: gray;
+        border: 3px solid lightgray;
+        border-radius: 10px;
+        color: whitesmoke;
+        font-weight: bold;
+        transition: all ease-in-out .2s;
+
+        &:hover {
+            width: 270px;
+            height: 70px;
+            border: 3px solid dimgray;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.PostList {
+    padding: 0 100px;
+    gap: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+}
+
+.PostItem {
+    min-height: 220px;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr) .5fr;
+    gap: 10px;
+    border: 3px solid gray;
+
+    h3,h4 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        span {
+            text-decoration: underline;
+        }
+    }
+    button {
+        background-color: whitesmoke;
+        border: 3px solid gray;
+        border-radius: 10px;
+        color: dimgray;
+        font-weight: bold;
+        transition: all ease-in-out .2s;
+        outline: none;
+
+        &:hover {
+            border: 3px solid black;
+            color: black;
+        }
+    }
+}
