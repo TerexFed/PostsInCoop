@@ -6,8 +6,6 @@ import { Context } from "./Context/Context";
 
 function App() {
 
-
-
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -27,10 +25,53 @@ function App() {
       });
   }, [])
 
-  function changePost(id){
+  useEffect(() => {
+    console.log('POST');
+
+    fetch('http://localhost:8000/posts', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(posts),
+    })
+    .then(data => {
+      console.log(data)
+      return data
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }, [posts])
+  // useEffect(() => {
+  //   console.log('DELETE');
+
+  // fetch('http://localhost:8000/posts/1', {
+  //   method: "DELETE",
+  //   headers: { "Content-Type": "application/json" },
+  // })
+  // .then(data => {
+  //   console.log(data);
+  //   return data;
+  // })
+  // .then(() => {
+  //   console.log('All posts deleted');
+  //   console.log('POST');
+  //   fetch('http://localhost:8000/posts', {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(posts),
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //     return data;
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => console.log(data));
+  // });
+  // }, [posts])
+
+  function changePost(id) {
     let newTitle = prompt('Введите новый title')
     let newSlug = prompt('Введите новый slug')
-    const ind = posts.findIndex(el => el.id === id)    
+    const ind = posts.findIndex(el => el.id === id)
     const newPosts = [...posts]
     newPosts.splice(ind, 1, { ...posts[ind], title: newTitle, slug: newSlug })
     setPosts(newPosts)
@@ -43,24 +84,24 @@ function App() {
     let Ptitle = prompt('Введите title')
     let Pslug = prompt('Введите slug')
 
-    if (isNaN(Ptitle) === false && isNaN(Pslug) === false) {
-      alert('Вы ввели неправильно Title или Slug')
+    // if (isNaN(Ptitle) === false && isNaN(Pslug) === false) {
+    //   alert('Вы ввели неправильно Title или Slug')
+    // }
+    // else {
+    let NewPost = {
+      id: Math.ceil(Math.random() * 100000),
+      title: Ptitle,
+      slug: Pslug,
     }
-    else {
-      let NewPost = {
-        id: Math.ceil(Math.random()*100000),
-        title: Ptitle,
-        slug: Pslug,
-      }
-      setPosts([NewPost, ...posts])
-    }
+    setPosts([NewPost, ...posts])
+    // }
 
   }
 
   return (
     <Context.Provider value={{ AddPost, posts, removePost, changePost }}>
       <div className="App">
-        <AddPostButton/>
+        <AddPostButton />
         <PostList posts={posts} removePost={removePost} />
       </div>
     </Context.Provider>
