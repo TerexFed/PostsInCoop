@@ -19,27 +19,41 @@ function App() {
       })
       .then(function (data) {
         setPosts(data)
+        fetch('http://localhost:8000/posts', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
       })
       .catch(function (error) {
         console.log(error);
       });
+
+    console.log('POST');
+
+
   }, [])
 
   useEffect(() => {
-    console.log('POST');
+    console.log('PUT');
+    console.log(posts);
 
     fetch('http://localhost:8000/posts', {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(posts),
     })
     .then(data => {
-      console.log(data)
-      return data
+      console.log(data);
+      return data;
     })
     .then(res => res.json())
     .then(data => console.log(data))
+    .catch(error => {
+      console.error('Ошибка при выполнении запроса PUT:', error);
+    });
   }, [posts])
+
   // useEffect(() => {
   //   console.log('DELETE');
 
